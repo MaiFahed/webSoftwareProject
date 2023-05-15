@@ -11,7 +11,7 @@ const SignIn = () => {
     console.log("hi")
   };
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', height: '70vh', borderRadius: '15px', border: 'solid 1px white', width: '1000px', position: 'absolute', top: '-90px', marginLeft: '300px', backgroundColor: 'white' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', height: '70vh', borderRadius: '15px', border: 'solid 1px white', width: '1000px', position: 'absolute', top: '-90px', marginLeft: '330px', backgroundColor: 'white' }}>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', flex: 1, height: '500px', }}>
         <div style={{ marginTop: '100px', fontWeight: 'bold', fontSize: '40px', color: 'black' }}>SignIn</div>
         <div  style={{

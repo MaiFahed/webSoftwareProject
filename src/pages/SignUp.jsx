@@ -50,9 +50,9 @@ const SignUp = () => {
     };
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', height: '80vh', borderRadius: '15px', border: 'solid 1px white', width: '1000px', position: 'absolute', top: '-100px', marginLeft: '300px', backgroundColor: 'white' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', height: '85.8vh', borderRadius: '15px', border: 'solid 1px white', width: '1000px', position: 'absolute', top: '-130px', marginLeft: '330px', backgroundColor: 'white' }}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', flex: 1, height: '500px', }}>
-                <div style={{ marginTop: '20px', fontWeight: 'bold', fontSize: '25px', color: 'black' }}>SignUp</div>
+                {/* <div style={{ marginTop: '20px', fontWeight: 'bold', fontSize: '25px', color: 'black' }}>SignUp</div> */}
                 <div style={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -159,7 +159,7 @@ const SignUp = () => {
                         Phone Number:
                         <input style={{
                             padding: '0.5rem',
-                            marginBottom: '1rem',
+                            // marginBottom: '1rem',
                             borderRadius: '0.5rem',
                             border: '1px solid #ccc',
                             width: '100%',
@@ -176,8 +176,48 @@ const SignUp = () => {
                         />
                     </label>
 
-                    {/* <p>Restaurant's Certificate:</p> */}
-                    <div style={{ display: 'flex', textAlign: 'center', flexDirection: 'row', justifyContent: 'center', alignContent: 'center', position: 'absolute', top: '385px', maxWidth: '250px', marginLeft: '-60px' }}>
+                    {/* <div style={{ display: 'flex', flexDirection: 'row', position: 'absolute', top: '480px' }}> */}
+                    <label style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        textAlign: 'left',
+                        width: '100%',
+                        fontSize: '1.2rem',
+                        margin: '0.1rem',
+                    }}>
+                        Restaurant's Name:
+                        <input style={{
+                            padding: '0.5rem',
+                            // marginBottom: '1rem',
+                            borderRadius: '0.5rem',
+                            border: '1px solid #ccc',
+                            width: '100%',
+                            maxWidth: '300px',
+                            color: 'black',
+                            fontSize: '1.2rem'
+                        }} type='text' value={resName} onChange={(event) => setResName(event.target.value)} />
+                    </label>
+                    <label style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        textAlign: 'left',
+                        width: '100%',
+                        fontSize: '1.2rem',
+                        // margin: '0.1rem',
+                    }}>
+                        Restaurant's Location:
+                        <input style={{
+                            padding: '0.5rem',
+                            // marginBottom: '1rem',
+                            borderRadius: '0.5rem',
+                            border: '1px solid #ccc',
+                            width: '100%',
+                            maxWidth: '300px',
+                            color: 'black',
+                            fontSize: '1.2rem'
+                        }} type='text' value={resLoc} onChange={(event) => setResLoc(event.target.value)} />
+                    </label>
+                    <div style={{ display: 'flex', textAlign: 'center', flexDirection: 'row', justifyContent: 'center', alignContent: 'center', position: 'absolute', top: '570px', maxWidth: '250px', marginLeft: '-60px' }}>
                         <label style={{
                             display: 'flex',
                             flexDirection: 'column',
@@ -185,12 +225,12 @@ const SignUp = () => {
                             width: '100%',
                             fontSize: '1.2rem',
                             margin: '0.2rem',
-                            marginLeft: '8rem'
+                            marginLeft: '9rem'
                         }}>
                             Restaurant's Certificate:
                             <input type="file" onChange={handleFileInputChange} />
                         </label>
-                        {selectedFile && <p style={{ fontSize: '17px', color: 'red', display: 'flex', flexDirection: 'row', position: 'absolute', top: '70px' }}>Selected file: {selectedFile.name}</p>}
+                        {selectedFile && <p style={{ fontSize: '17px', color: 'red', position: 'absolute', top: '47px', marginLeft:'340px' }}>{selectedFile.name}</p>}
                         <button style={{
                             margin: '10px',
                             paddingLeft: '10px',
@@ -204,54 +244,9 @@ const SignUp = () => {
                             transition: 'background-color 0.2s ease-in-out'
                         }} onClick={handleUploadClick}>Upload</button>
                     </div>
-                    <div style={{ display: 'flex', flexDirection: 'row', position: 'absolute', top: '480px' }}>
-                        <label style={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            justifyContent: 'flex-start',
-                            alignContent: 'center',
-                            textAlign: 'left',
-                            width: '100%',
-                            fontSize: '1.1rem',
-                            margin: '-0.2rem',
-                            marginLeft: '40px',
-                        }}>
-                            Restaurant's Name:
-                            <input style={{
-                                padding: '0.5rem',
-                                marginBottom: '1rem',
-                                borderRadius: '0.5rem',
-                                border: '1px solid #ccc',
-                                width: '100%',
-                                maxWidth: '150px',
-                                color: 'black',
-                                fontSize: '1.2rem'
-                            }} type='text' value={resName} onChange={(event) => setResName(event.target.value)} />
-                        </label>
-                        <label style={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            textAlign: 'left',
-                            width: '100%',
-                            fontSize: '1.1rem',
-                            margin: '-0.2rem',
-                            marginLeft: '1rem'
-                        }}>
-                            Restaurant's Location:
-                            <input style={{
-                                padding: '0.5rem',
-                                marginBottom: '1rem',
-                                borderRadius: '0.5rem',
-                                border: '1px solid #ccc',
-                                width: '100%',
-                                maxWidth: '170px',
-                                color: 'black',
-                                fontSize: '1.2rem'
-                            }} type='text' value={resLoc} onChange={(event) => setResLoc(event.target.value)} />
-                        </label>
-                    </div>
+                    {/* </div>  */}
                     <button style={{
-                        marginTop: '170px',
+                        marginTop: '90px',
                         padding: '0.5rem 1rem',
                         borderRadius: '0.5rem',
                         backgroundColor: '#0070f3',
@@ -266,7 +261,7 @@ const SignUp = () => {
             <div style={{
                 display: 'flex',
                 alignItems: 'center', justifyContent: 'center', maxWidth: '1000px',
-                flex: 1, height: '80vh', borderRadius: '15px', border: 'solid 1px white',
+                flex: 1, height: '85.8vh', borderRadius: '15px', border: 'solid 1px white',
                 backgroundImage: 'url("https://tse1.mm.bing.net/th?id=OIP.cAgPjRELM1X7HjZJGGZjKgHaDt&pid=Api&P=0") ', filter: 'blur(3px)',
                 backgroundSize: 'cover'
             }}>

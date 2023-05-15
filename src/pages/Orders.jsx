@@ -3,7 +3,7 @@ import Messages from './../components/Messages';
 
 const Orders = () => {
   return (
-    <div style={{ marginLeft: '200px', marginTop: '-50px', backgroundColor: 'white', padding: '10px' }}>
+    <div style={{ borderRadius: '15px', border: 'solid 1px white', marginLeft: '200px', marginTop: '-50px', backgroundColor: 'white', padding: '10px' }}>
       <Messages />
     </div>
 
