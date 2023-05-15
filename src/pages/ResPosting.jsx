@@ -14,7 +14,7 @@ const ResPosting = () => {
         setSelectedOption(event.target.value);
     };
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', height: '80vh', borderRadius: '15px', border: 'solid 1px white', width: '1000px', position: 'absolute', top: '-100px', marginLeft: '300px', backgroundColor: 'white' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', height: '85vh', borderRadius: '15px', border: 'solid 1px white', width: '1000px', position: 'absolute', top: '-120px', marginLeft: '330px', backgroundColor: 'white' }}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', flex: 1, height: '500px', }}>
                 <div style={{ marginTop: '20px', fontWeight: 'bold', fontSize: '25px', color: 'red' }}>Post your box's information</div>
                 <div style={{
@@ -81,7 +81,7 @@ const ResPosting = () => {
                         Number of box:
                         <input style={{
                             padding: '0.5rem',
-                            marginBottom: '1rem',
+                            marginBottom: '0.5rem',
                             borderRadius: '0.5rem',
                             border: '1px solid #ccc',
                             width: '100%',
@@ -110,7 +110,7 @@ const ResPosting = () => {
                             fontSize: '1.2rem'
                         }} type='text' value={des} onChange={e => setDes(e.target.value)} />
                     </label>
-                    <div style={{ display: 'flex', flexDirection: 'row', position: 'absolute', top: '410px' }}>
+                    <div style={{ display: 'flex', flexDirection: 'row', position: 'absolute', top: '460px' }}>
                         <label style={{
                             display: 'flex',
                             flexDirection: 'column',
@@ -157,7 +157,7 @@ const ResPosting = () => {
                         </label>
                     </div>
                     {/* <p>Time to collect</p> */}
-                    <div style={{ display: 'flex', flexDirection: 'row', position: 'absolute', top: '500px' }}>
+                    <div style={{ display: 'flex', flexDirection: 'row', position: 'absolute', top: '550px' }}>
                         <label style={{
                             display: 'flex',
                             flexDirection: 'column',
@@ -218,7 +218,7 @@ const ResPosting = () => {
             <div style={{
                 display: 'flex',
                 alignItems: 'center', justifyContent: 'center', maxWidth: '1000px',
-                flex: 1, height: '80vh', borderRadius: '15px',
+                flex: 1, height: '80vh', borderRadius: '15px', marginTop:'20px',
                 backgroundImage: 'url("https://cdn3.iconfinder.com/data/icons/30-communication-connectivity-part-2/202/Post-512.png") ',
                 backgroundSize: 'cover'
             }}>
