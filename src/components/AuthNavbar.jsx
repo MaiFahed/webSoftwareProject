@@ -1,21 +1,19 @@
 import React from 'react'
-import { Link, useMatch, useResolvedPath } from 'react-router-dom'
 
-const NavBar = () => {
+const AuthNavbar = () => {
     return (
         <nav className="nav">
             <Link to="/" className="site-title">
                 Go4Food
             </Link>
             <ul>
-                <CustomLink to="/signIn">SignIn</CustomLink>
-                <CustomLink to="/signUp">SignUp</CustomLink>
-                <CustomLink to="/orders">Orders</CustomLink>
-                {/* <CustomLink to="/about">About</CustomLink>
-                <CustomLink to="/posting">Posting</CustomLink> */}
+                {/* <CustomLink to="/signIn">SignIn</CustomLink>
+                <CustomLink to="/signUp">SignUp</CustomLink> */}
+                <CustomLink to="/about">About</CustomLink>
+                <CustomLink to="/posting">Posting</CustomLink>
             </ul>
         </nav>
-    )
+    );
 }
 
 function CustomLink({ to, children, ...props }) {
@@ -31,4 +29,4 @@ function CustomLink({ to, children, ...props }) {
     )
 }
 
-export default NavBar
+export default AuthNavbar

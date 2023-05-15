@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
     const [selectedOption, setSelectedOption] = useState('');
@@ -13,6 +15,11 @@ const SignUp = () => {
 
     const handleFileInputChange = (event) => {
         setSelectedFile(event.target.files[0]);
+    };
+    const handleShowNotification = () => {
+        toast.success('Thank you for joining us! Keep track, and sign in within two days', {
+            position: toast.POSITION.TOP_RIGHT,
+        });
     };
 
     // const handleUploadClick = () => {
@@ -252,7 +259,8 @@ const SignUp = () => {
                         border: 'none',
                         cursor: 'pointer',
                         transition: 'background-color 0.2s ease-in-out'
-                    }} onClick={handleSignUp} type="submit">SignUp</button>
+                    }} onClick={handleShowNotification} type="submit">SignUp</button>
+                    <ToastContainer />
                 </div>
             </div>
             <div style={{
