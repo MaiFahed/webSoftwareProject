@@ -6,6 +6,7 @@ import About from './pages/About';
 import Home from './pages/Home';
 import SignIn from "./pages/SignIn";
 import ResPosting from "./pages/ResPosting";
+import SignUp from "./pages/SignUp";
 // import { useHistory } from 'react-router-dom';
 function App() {
 return (
@@ -15,6 +16,7 @@ return (
       <Routes>
         <Route path="/" element={ <Home />} />
         <Route path="/signIn" element={ <SignIn />} />
+        <Route path="/signUp" element={ <SignUp />} />
         <Route path="/about" element={ <About />} />
         <Route path="/posting" element={ <ResPosting />} />
       </Routes>

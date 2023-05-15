@@ -8,13 +8,13 @@ const SignIn = () => {
   // const history = useHistory();
 
   const handleSignIn = () => {
-    // history.replace("/ResPosting");
+    console.log("hi")
   };
   return (
     <div style={{ display: 'flex', justifyContent: 'center', height: '70vh', borderRadius: '15px', border: 'solid 1px white', width: '1000px', position: 'absolute', top: '-90px', marginLeft: '300px', backgroundColor: 'white' }}>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', flex: 1, height: '500px', }}>
         <div style={{ marginTop: '100px', fontWeight: 'bold', fontSize: '40px', color: 'black' }}>SignIn</div>
-        <form onSubmit={handleSignIn} style={{
+        <div  style={{
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -70,7 +70,7 @@ const SignIn = () => {
             cursor: 'pointer',
             transition: 'background-color 0.2s ease-in-out'
           }} onClick={handleSignIn} type="submit">Sign In</button>
-        </form>
+        </div>
       </div>
       <div style={{
         display: 'flex',
