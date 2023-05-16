@@ -14,17 +14,17 @@ import Orders from "./pages/Orders";
 function App() {
   return (
     <div className="app">
-      <NavBar/>
+      <NavBar />
       <div className="container">
-      <Routes>
-        <Route path="/" element={ <Home />} />
-        <Route path="/signIn" element={ <SignIn />} />
-        <Route path="/signUp" element={ <SignUp />} />
-        <Route path="/about" element={ <About />} />
-        <Route path="/posting" element={ <ResPosting />} />
-        <Route path="/orders" element={ <Orders />} />
-      </Routes>
-    </div> 
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signIn" element={<SignIn />} />
+          <Route path="/signUp" element={<SignUp />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/posting" element={<ResPosting />} />
+          <Route path="/orders" element={<Orders />} />
+        </Routes>
+      </div>
     </div>
   );
 }

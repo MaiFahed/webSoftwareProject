@@ -3,14 +3,16 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
-    const [selectedOption, setSelectedOption] = useState('');
+    // const [selectedOption, setSelectedOption] = useState('');
+    const [selectedOption2, setSelectedOption2] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [phone, setPhone] = useState('');
-    const [resName, setResName] = useState('');
+    const [resName, setResName] = useState(''); 
     const [resLoc, setResLoc] = useState('');
+    const [resLog, setResLog] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
 
     const handleFileInputChange = (event) => {
@@ -22,31 +24,39 @@ const SignUp = () => {
         });
     };
 
+    const handleSelectChange2 = (event) => {
+        setSelectedOption2(event.target.value);
+    };
+
     // const handleUploadClick = () => {
-    //     const xhr = new XMLHttpRequest();
-    //     xhr.open('POST', '/upload');
-    //     xhr.setRequestHeader('Content-Type', 'application/json');
-    //     xhr.onload = () => {
-    //       if (xhr.status === 200) {
-    //         console.log('File uploaded successfully!');
-    //       } else {
-    //         console.error('File upload failed:', xhr.responseText);
-    //       }
-    //     };
-    //     xhr.send(selectedFile);
-    //   };
+    //     // Perform the upload using the selected file
+    //     console.log(selectedFile);
+    // };
 
-    const handleUploadClick = () => {
-        // Perform the upload using the selected file
-        console.log(selectedFile);
-    };
-
-    const handleSelectChange = (event) => {
-        setSelectedOption(event.target.value);
-    };
+    // const handleSelectChange = (event) => {
+    //     setSelectedOption(event.target.value);
+    // };
 
     const handleSignUp = () => {
-        console.log("hi")
+        let values = {
+            firstName : firstName ,
+            email : email ,
+            lastName : lastName ,
+            phoneNumber : phone ,
+            password : password ,
+            resName : resName ,
+            location : [{
+                latitude : resLoc,
+                latitudeDelta : "0.0922" ,
+                longitude : resLog ,
+                longitudeDelta : "0.0421"
+            } , 
+            {
+                "city" : selectedOption2
+            }]
+        }
+
+        console.log(values)
     };
 
     return (
@@ -202,6 +212,30 @@ const SignUp = () => {
                         flexDirection: 'column',
                         textAlign: 'left',
                         width: '100%',
+                        marginTop: '30px',
+                        fontSize: '1.2rem',
+                        margin: '-0.5rem'
+                    }} htmlFor="dropdown">Restaurant's Location:</label>
+                    <select style={{
+                        padding: '0.5rem',
+                        marginBottom: '0rem',
+                        borderRadius: '0.5rem',
+                        border: '1px solid #ccc',
+                        width: '100%',
+                        maxWidth: '300px',
+                        color: 'gray',
+                        fontSize: '1.2rem',
+                    }} id="dropdown" value={selectedOption2} onChange={handleSelectChange2}>
+                        <option value="">--Please choose an option--</option>
+                        <option value="Nablus">Nablus</option>
+                        <option value="Ramallah">Ramallah</option>
+                        {/* <option value="option3">dinner</option> */}
+                    </select>
+                    <label style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        textAlign: 'left',
+                        width: '100%',
                         fontSize: '1.2rem',
                         // margin: '0.1rem',
                     }}>
@@ -217,7 +251,27 @@ const SignUp = () => {
                             fontSize: '1.2rem'
                         }} type='text' value={resLoc} onChange={(event) => setResLoc(event.target.value)} />
                     </label>
-                    <div style={{ display: 'flex', textAlign: 'center', flexDirection: 'row', justifyContent: 'center', alignContent: 'center', position: 'absolute', top: '570px', maxWidth: '250px', marginLeft: '-60px' }}>
+                    <label style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        textAlign: 'left',
+                        width: '100%',
+                        fontSize: '1.2rem',
+                        // margin: '0.1rem',
+                    }}>
+                        log:
+                        <input style={{
+                            padding: '0.5rem',
+                            // marginBottom: '1rem',
+                            borderRadius: '0.5rem',
+                            border: '1px solid #ccc',
+                            width: '100%',
+                            maxWidth: '300px',
+                            color: 'black',
+                            fontSize: '1.2rem'
+                        }} type='text' value={resLog} onChange={(event) => setResLog(event.target.value)} />
+                    </label>
+                    {/* <div style={{ display: 'flex', textAlign: 'center', flexDirection: 'row', justifyContent: 'center', alignContent: 'center', position: 'absolute', top: '570px', maxWidth: '250px', marginLeft: '-60px' }}>
                         <label style={{
                             display: 'flex',
                             flexDirection: 'column',
@@ -243,7 +297,7 @@ const SignUp = () => {
                             cursor: 'pointer',
                             transition: 'background-color 0.2s ease-in-out'
                         }} onClick={handleUploadClick}>Upload</button>
-                    </div>
+                    </div> */}
                     {/* </div>  */}
                     <button style={{
                         marginTop: '90px',
@@ -254,7 +308,7 @@ const SignUp = () => {
                         border: 'none',
                         cursor: 'pointer',
                         transition: 'background-color 0.2s ease-in-out'
-                    }} onClick={handleShowNotification} type="submit">SignUp</button>
+                    }} onClick={handleSignUp} type="submit">SignUp</button>
                     <ToastContainer />
                 </div>
             </div>
