@@ -16,10 +16,12 @@
     color:  white;
     display: flex;
     justify-content: space-between;
-    align-items: stretch;
+    align-items: center;
     gap: 2rem;
     padding: 0 20rem;
     padding-top: 2rem;
+    position: absolute;
+    top: -210px;
   }
   
   .site-title {

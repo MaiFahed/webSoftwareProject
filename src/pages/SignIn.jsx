@@ -1,20 +1,30 @@
 import React, { useState } from 'react';
-// import { useHistory } from 'react-router-dom';
+import Orders from './Orders';
 import ResPosting from './ResPosting';
+import SignUp from './SignUp';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const history = useHistory();
 
   const handleSignIn = () => {
-    console.log("hi")
+    console.log("hi");
+  };
+
+  const buttonStyles = {
+    backgroundColor: '#0070f3',
+    marginTop: '20px',
+    padding: '0.5rem 1rem',
+    borderRadius: '0.5rem',
+    color: '#fff',
+    border: 'none',
+    cursor: 'pointer',
   };
   return (
     <div style={{ display: 'flex', justifyContent: 'center', height: '70vh', borderRadius: '15px', border: 'solid 1px white', width: '1000px', position: 'absolute', top: '-90px', marginLeft: '330px', backgroundColor: 'white' }}>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', flex: 1, height: '500px', }}>
         <div style={{ marginTop: '100px', fontWeight: 'bold', fontSize: '40px', color: 'black' }}>SignIn</div>
-        <div  style={{
+        <div style={{
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -60,16 +70,12 @@ const SignIn = () => {
               fontSize: '1.2rem'
             }} placeholder="Enter your password" type="password" value={password} onChange={e => setPassword(e.target.value)} />
           </label>
-          <button style={{
-            marginTop: '20px',
-            padding: '0.5rem 1rem',
-            borderRadius: '0.5rem',
-            backgroundColor: '#0070f3',
-            color: '#fff',
-            border: 'none',
-            cursor: 'pointer',
-            transition: 'background-color 0.2s ease-in-out'
-          }} onClick={handleSignIn} type="submit">Sign In</button>
+          <a href="/ResPosting">
+            <button
+              onClick={handleSignIn}
+              style={buttonStyles} type="submit">Sign In</button>
+          </a>
+          <a href="/SignUp" style={{ fontSize: '15px' }}>You don't have an account? Sign Up here.</a>
         </div>
       </div>
       <div style={{

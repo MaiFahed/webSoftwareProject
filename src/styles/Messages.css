@@ -10,7 +10,8 @@
 }
 
 .col-md-4 {
-    height: 500px;
-    top: 500px;
+    height: 600px;
+    position: absolute;
+    top: -150px;
     overflow: auto;
 }

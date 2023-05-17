@@ -10,19 +10,19 @@ const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [phone, setPhone] = useState('');
-    const [resName, setResName] = useState(''); 
+    const [resName, setResName] = useState('');
     const [resLoc, setResLoc] = useState('');
     const [resLog, setResLog] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
 
-    const handleFileInputChange = (event) => {
-        setSelectedFile(event.target.files[0]);
-    };
-    const handleShowNotification = () => {
-        toast.success('Thank you for joining us! Keep track, and sign in within two days', {
-            position: toast.POSITION.TOP_RIGHT,
-        });
-    };
+    // const handleFileInputChange = (event) => {
+    //     setSelectedFile(event.target.files[0]);
+    // };
+    // const handleShowNotification = () => {
+    //     toast.success('Thank you for joining us! Keep track, and sign in within two days', {
+    //         position: toast.POSITION.TOP_RIGHT,
+    //     });
+    // };
 
     const handleSelectChange2 = (event) => {
         setSelectedOption2(event.target.value);
@@ -39,29 +39,43 @@ const SignUp = () => {
 
     const handleSignUp = () => {
         let values = {
-            firstName : firstName ,
-            email : email ,
-            lastName : lastName ,
-            phoneNumber : phone ,
-            password : password ,
-            resName : resName ,
-            location : [{
-                latitude : resLoc,
-                latitudeDelta : "0.0922" ,
-                longitude : resLog ,
-                longitudeDelta : "0.0421"
-            } , 
+            firstName: firstName,
+            email: email,
+            lastName: lastName,
+            phoneNumber: phone,
+            password: password,
+            resName: resName,
+            location: [{
+                latitude: resLoc,
+                latitudeDelta: "0.0922",
+                longitude: resLog,
+                longitudeDelta: "0.0421"
+            },
             {
-                "city" : selectedOption2
+                "city": selectedOption2
             }]
         }
 
-        console.log(values)
+        console.log(values);
+        toast.success('Thank you for joining us! Keep track, and sign in within two days', {
+            position: toast.POSITION.TOP_RIGHT,
+        });
+        toast.success(<a href='/SignIn'>Click to Sign in here.</a>, {
+            position: toast.POSITION.TOP_RIGHT,
+        });
+        setFirstName('');
+        setLastName('');
+        setEmail('');
+        setPassword('');
+        setPhone('');
+        setResName('');
+        setResLoc('');
+        setResLog('');
     };
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', height: '85.8vh', borderRadius: '15px', border: 'solid 1px white', width: '1000px', position: 'absolute', top: '-130px', marginLeft: '330px', backgroundColor: 'white' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', flex: 1, height: '500px', }}>
+        <div style={{ display: 'flex', justifyContent: 'center', height: '96vh', borderRadius: '15px', border: 'solid 1px white', width: '1000px', position: 'absolute', top: '-195px', marginLeft: '330px', backgroundColor: 'white' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', flex: 1, height: '500px' }}>
                 {/* <div style={{ marginTop: '20px', fontWeight: 'bold', fontSize: '25px', color: 'black' }}>SignUp</div> */}
                 <div style={{
                     display: 'flex',
@@ -215,7 +229,7 @@ const SignUp = () => {
                         marginTop: '30px',
                         fontSize: '1.2rem',
                         margin: '-0.5rem'
-                    }} htmlFor="dropdown">Restaurant's Location:</label>
+                    }} htmlFor="dropdown">Location of Restaurant:</label>
                     <select style={{
                         padding: '0.5rem',
                         marginBottom: '0rem',
@@ -229,7 +243,7 @@ const SignUp = () => {
                         <option value="">--Please choose an option--</option>
                         <option value="Nablus">Nablus</option>
                         <option value="Ramallah">Ramallah</option>
-                        {/* <option value="option3">dinner</option> */}
+                        <option value="Jenin">Jenin</option>
                     </select>
                     <label style={{
                         display: 'flex',
@@ -239,7 +253,7 @@ const SignUp = () => {
                         fontSize: '1.2rem',
                         // margin: '0.1rem',
                     }}>
-                        Restaurant's Location:
+                        Restaurant's Latitude:
                         <input style={{
                             padding: '0.5rem',
                             // marginBottom: '1rem',
@@ -259,7 +273,7 @@ const SignUp = () => {
                         fontSize: '1.2rem',
                         // margin: '0.1rem',
                     }}>
-                        log:
+                        Restaurant's Longitude:
                         <input style={{
                             padding: '0.5rem',
                             // marginBottom: '1rem',
@@ -300,7 +314,7 @@ const SignUp = () => {
                     </div> */}
                     {/* </div>  */}
                     <button style={{
-                        marginTop: '90px',
+                        marginTop: '-5px',
                         padding: '0.5rem 1rem',
                         borderRadius: '0.5rem',
                         backgroundColor: '#0070f3',
@@ -311,11 +325,12 @@ const SignUp = () => {
                     }} onClick={handleSignUp} type="submit">SignUp</button>
                     <ToastContainer />
                 </div>
+                <p>Already have an account? Sign in here.</p> 
             </div>
             <div style={{
                 display: 'flex',
                 alignItems: 'center', justifyContent: 'center', maxWidth: '1000px',
-                flex: 1, height: '85.8vh', borderRadius: '15px', border: 'solid 1px white',
+                flex: 1, height: '96vh', borderRadius: '15px', border: 'solid 1px white',
                 backgroundImage: 'url("https://tse1.mm.bing.net/th?id=OIP.cAgPjRELM1X7HjZJGGZjKgHaDt&pid=Api&P=0") ', filter: 'blur(3px)',
                 backgroundSize: 'cover'
             }}>
