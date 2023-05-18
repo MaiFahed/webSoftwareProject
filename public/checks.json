@@ -1,0 +1,82 @@
+[
+    {
+        "firstName": "Mai",
+        "lastName": "Fahed",
+        "email": "maifahed16@gmail.com",
+        "phoneNumber": "0597094458",
+        "resName": "KFC",
+        "location": "nablus",
+        "lat": "520.220.8",
+        "long": "729.100.8"
+    },
+    {
+        "firstName": "Amr",
+        "lastName": "Salam",
+        "email": "amrsalam2@gmail.com",
+        "phoneNumber": "0597094458",
+        "resName": "Wake up",
+        "location": "nablus",
+        "lat": "520.220.8",
+        "long": "729.100.8"
+    },
+    {
+        "firstName": "Rula",
+        "lastName": "Shuqo",
+        "email": "RulaShuqo@gmail.com",
+        "phoneNumber": "0597094458",
+        "resName": "Popeyes",
+        "location": "nablus",
+        "lat": "520.220.8",
+        "long": "729.100.8"
+    },
+    {
+        "firstName": "Dima",
+        "lastName": "Fahed",
+        "email": "dimafahed16@gmail.com",
+        "phoneNumber": "0597094458",
+        "resName": "Heart Attack",
+        "location": "nablus",
+        "lat": "520.220.8",
+        "long": "729.100.8"
+    },
+    {
+        "firstName": "Ahmad",
+        "lastName": "Atout",
+        "email": "ahmadatout16@gmail.com",
+        "phoneNumber": "0597094458",
+        "resName": "Mom cafe",
+        "location": "nablus",
+        "lat": "520.220.8",
+        "long": "729.100.8"
+    },
+    {
+        "firstName": "Masa",
+        "lastName": "Koni",
+        "email": "masakoni@gmail.com",
+        "phoneNumber": "0597094458",
+        "resName": "Zeit W Zatar",
+        "location": "nablus",
+        "lat": "520.220.8",
+        "long": "729.100.8"
+    },
+    {
+        "firstName": "Ghanya",
+        "lastName": "Fahed",
+        "email": "ghanyafahed16@gmail.com",
+        "phoneNumber": "0597094458",
+        "resName": "Finjan",
+        "location": "nablus",
+        "lat": "520.220.8",
+        "long": "729.100.8"
+    },
+    {
+        "firstName": "Yousef",
+        "lastName": "Salam",
+        "email": "yousefsalam@gmail.com",
+        "phoneNumber": "0597094458",
+        "resName": "1948",
+        "location": "nablus",
+        "lat": "520.220.8",
+        "long": "729.100.8"
+    }
+]

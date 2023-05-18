@@ -70,7 +70,7 @@ const SignIn = () => {
               fontSize: '1.2rem'
             }} placeholder="Enter your password" type="password" value={password} onChange={e => setPassword(e.target.value)} />
           </label>
-          <a href="/ResPosting">
+          <a href="/Examination">
             <button
               onClick={handleSignIn}
               style={buttonStyles} type="submit">Sign In</button>

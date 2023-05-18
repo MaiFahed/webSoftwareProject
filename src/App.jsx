@@ -9,6 +9,9 @@ import SignUp from "./pages/SignUp";
 import Orders from "./pages/Orders";
 import Home2 from "./pages/Home2";
 import { LogOut } from "./pages/LogOut";
+import Statistic from "./pages/Statistic";
+import AdminNavBar from "./components/AdminNavBar";
+import Examination from "./pages/Examination";
 
 function App() {
 
@@ -25,6 +28,9 @@ function App() {
             <Route path="/ResPosting" component={ResPosting} />
             <Route path="/Orders" component={Orders} />
             <Route path="/LogOut" component={LogOut} />
+            <Route path="/AdminNavBar" component={AdminNavBar} />
+            <Route path="/Examination" component={Examination} />
+            <Route path="/Statistic" component={Statistic} />
           </Switch>
         </Router>
       </div>
