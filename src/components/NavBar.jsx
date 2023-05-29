@@ -9,7 +9,8 @@ const NavBar = () => {
             <ul>
                 <CustomLink href="/ResPosting">Posting</CustomLink> 
                 <CustomLink href="/Orders">Orders</CustomLink>
-                <CustomLink href="/LogOut">Log Out</CustomLink>
+                <CustomLink href="/Donate">Donate</CustomLink>
+                <CustomLink href="/">Log Out</CustomLink>
             </ul>
         </nav>
     )

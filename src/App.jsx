@@ -12,6 +12,7 @@ import { LogOut } from "./pages/LogOut";
 import Statistic from "./pages/Statistic";
 import AdminNavBar from "./components/AdminNavBar";
 import Examination from "./pages/Examination";
+import Donate from "./pages/Donate";
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
             <Route path="/NavBar" component={NavBar} />
             <Route path="/ResPosting" component={ResPosting} />
             <Route path="/Orders" component={Orders} />
+            <Route path="/Donate" component={Donate} />
             <Route path="/LogOut" component={LogOut} />
             <Route path="/AdminNavBar" component={AdminNavBar} />
             <Route path="/Examination" component={Examination} />

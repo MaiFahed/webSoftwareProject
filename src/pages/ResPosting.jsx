@@ -17,48 +17,48 @@ const ResPosting = () => {
     const [to, setTo] = useState('');
     const [toD, setToD] = useState('');
     const [toPeriod, setToPeriod] = useState('');
-    const [email , setUserEmail] = useState('')
-    const [click , setClick] = useState(false)
-    const [prodcutId , setProductId] = useState('')
-    useEffect (() => {
+    const [email, setUserEmail] = useState('')
+    const [click, setClick] = useState(false)
+    const [prodcutId, setProductId] = useState('')
+    useEffect(() => {
         AsyncStorage.getItem('user')
-        .then(data => {
-            setUserEmail(data)
-            setClick(!click)
-        })
-    } , [resName])
+            .then(data => {
+                setUserEmail(data)
+                setClick(!click)
+            })
+    }, [resName])
 
-    useEffect(()=> {
+    useEffect(() => {
         let values = {
-            email : email
+            email: email
         }
         fetch(`http://${import.meta.env.VITE_IP_ADDRESS}:3333/prodcut/getInfo`, {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json',
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify(values),
-          })
-        .then(response => response.json())
-        .then(result => {
-            console.log(result)
-            setBoxNo(result[0].boxNo)
-            setDes(result[0].description)
-            setResName(result[0].resName)
-            setSelectedOption(result[0].category)
-            setOld(result[0].price['oldPrice'])
-            setNew(result[0].price['newPrice'])
-            let arr = result[0].timeToCollect.split('-')
-            console.log(arr[1])
-            setFrom(convertTo24Hour(arr[0]))
-            setTo(convertTo24Hour(arr[1]))
-            setFromD(arr[0])
-            setToD(arr[1])
-            setSelectedOption2(result[0].available)
-            setProductId(result[0]._id)
         })
-        .catch(error => console.log(error));
-    } ,[click])
+            .then(response => response.json())
+            .then(result => {
+                console.log(result)
+                setBoxNo(result[0].boxNo)
+                setDes(result[0].description)
+                setResName(result[0].resName)
+                setSelectedOption(result[0].category)
+                setOld(result[0].price['oldPrice'])
+                setNew(result[0].price['newPrice'])
+                let arr = result[0].timeToCollect.split('-')
+                console.log(arr[1])
+                setFrom(convertTo24Hour(arr[0]))
+                setTo(convertTo24Hour(arr[1]))
+                setFromD(arr[0])
+                setToD(arr[1])
+                setSelectedOption2(result[0].available)
+                setProductId(result[0]._id)
+            })
+            .catch(error => console.log(error));
+    }, [click])
 
     const handleSelectChange = (event) => {
         setSelectedOption(event.target.value);
@@ -69,30 +69,30 @@ const ResPosting = () => {
     }
     let updateInfo = () => {
         let values = {
-            category : selectedOption ,
-            resName : resName ,
-            boxNo : boxNo ,
-            price :{
-                oldPrice : old ,
-                newPrice : newp
-            } ,
-            timeToCollect : `${fromD} ${fromPeriod}-${toD} ${toPeriod}` ,
-            description : des ,
-            available : selectedOption2
-            
+            category: selectedOption,
+            resName: resName,
+            boxNo: boxNo,
+            price: {
+                oldPrice: old,
+                newPrice: newp
+            },
+            timeToCollect: `${fromD} ${fromPeriod}-${toD} ${toPeriod}`,
+            description: des,
+            available: selectedOption2
+
         }
         console.log(values)
         fetch(`http://${import.meta.env.VITE_IP_ADDRESS}:3333/prodcut/updateProduct/${prodcutId}`, {
             method: 'PUT',
             headers: {
-              'Content-Type': 'application/json',
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify(values),
-          })
-        .then(response => response.json())
-        .then(data => {
-            setClick(!click)
         })
+            .then(response => response.json())
+            .then(data => {
+                setClick(!click)
+            })
     }
 
     let handleFfrom = (event) => {
@@ -120,25 +120,25 @@ const ResPosting = () => {
         return date.toLocaleTimeString([], options);
     };
 
-    const convertTo24Hour = (time) =>  {
+    const convertTo24Hour = (time) => {
         var hours = parseInt(time.substr(0, 2));
         var minutes = parseInt(time.substr(3, 2));
         var period = time.substr(6, 2).toLowerCase();
-      
+
         if (period === 'pm' && hours !== 12) {
-          hours += 12;
+            hours += 12;
         } else if (period === 'am' && hours === 12) {
-          hours = 0;
+            hours = 0;
         }
-      
+
         var formattedTime = hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0');
         return formattedTime;
-      }
+    }
 
     return (
         <>
             <NavBar />
-            <div style={{ display: 'flex', justifyContent: 'center', height: '85vh', borderRadius: '15px', border: 'solid 1px white', width: '1000px', position: 'absolute', top: '-120px', marginLeft: '330px', backgroundColor: 'white' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', height: '88vh', borderRadius: '15px', border: 'solid 1px white', width: '1000px', position: 'absolute', top: '-120px', marginLeft: '330px', backgroundColor: 'white' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', flex: 1, height: '500px', }}>
                     <div style={{ marginTop: '20px', fontWeight: 'bold', fontSize: '25px', color: 'red' }}>Post your box's information</div>
                     <div style={{
@@ -146,10 +146,11 @@ const ResPosting = () => {
                         flexDirection: 'column',
                         alignItems: 'center',
                         gap: '1rem',
-                        margin: '2rem auto',
+                        margin: '1rem auto',
                         maxWidth: '400px',
                         color: 'black'
                     }}>
+                        
                         <label style={{
                             display: 'flex',
                             flexDirection: 'column',
@@ -199,6 +200,7 @@ const ResPosting = () => {
                                 fontSize: '1.2rem'
                             }} type='text' value={resName} onChange={e => setResName(e.target.value)} />
                         </label>
+                        
                         <label style={{
                             display: 'flex',
                             flexDirection: 'column',
@@ -220,6 +222,29 @@ const ResPosting = () => {
                             }} type='number' value={boxNo} onChange={(event) => setBoxNo(event.target.value)} />
                         </label>
                         <label style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                textAlign: 'left',
+                                width: '100%',
+                                fontSize: '1.2rem',
+                                margin: '-0.2rem',
+                                marginLeft: '0rem'
+                            }} htmlFor="dropdown">Avaliable:</label>
+                            <select style={{
+                                padding: '0.5rem',
+                                marginBottom: '-1rem',
+                                borderRadius: '0.5rem',
+                                border: '1px solid #ccc',
+                                width: '100%',
+                                maxWidth: '300px',
+                                color: 'gray',
+                                fontSize: '1.2rem',
+                            }} id="dropdown" value={selectedOption2} onChange={handleSelectChange2}>
+                                <option value="">--Please choose an option--</option>
+                                <option value="true">YES</option>
+                                <option value="false">NO</option>
+                            </select>
+                        <label style={{
                             display: 'flex',
                             flexDirection: 'column',
                             textAlign: 'left',
@@ -239,7 +264,7 @@ const ResPosting = () => {
                                 fontSize: '1.2rem'
                             }} type='text' value={des} onChange={e => setDes(e.target.value)} />
                         </label>
-                        <div style={{ display: 'flex', flexDirection: 'row', position: 'absolute', top: '460px' }}>
+                        <div style={{ display: 'flex', flexDirection: 'row', position: 'absolute', top: '519px' }}>
                             <label style={{
                                 display: 'flex',
                                 flexDirection: 'column',
@@ -286,7 +311,7 @@ const ResPosting = () => {
                             </label>
                         </div>
                         {/* <p>Time to collect</p> */}
-                        <div style={{ display: 'flex', flexDirection: 'row', position: 'absolute', top: '550px' }}>
+                        <div style={{ display: 'flex', flexDirection: 'row', position: 'absolute', top: '605px' }}>
                             <label style={{
                                 display: 'flex',
                                 flexDirection: 'column',
@@ -331,33 +356,13 @@ const ResPosting = () => {
                                     fontSize: '1.2rem'
                                 }} type='time' value={to} onChange={handleTo} />
                             </label>
-                            <label style={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                                textAlign: 'left',
-                                width: '100%',
-                                fontSize: '1.2rem',
-                                margin: '-0.2rem',
-                                marginLeft: '1rem'
-                            }} htmlFor="dropdown">Avaliable:</label>
-                        <select style={{
-                            padding: '0.5rem',
-                            marginBottom: '1rem',
-                            borderRadius: '0.5rem',
-                            border: '1px solid #ccc',
-                            width: '100%',
-                            maxWidth: '300px',
-                            color: 'gray',
-                            fontSize: '1.2rem',
-                        }} id="dropdown" value={selectedOption2} onChange={handleSelectChange2}>
-                            <option value="">--Please choose an option--</option>
-                            <option value="true">YES</option>
-                            <option value="false">NO</option>
-                        </select>
-                        </div>
 
-                        <button onClick = {updateInfo} style={{
-                            marginTop: '170px',
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'row', position: 'absolute', top: '700px' }}>
+                           
+                        </div>
+                        <button onClick={updateInfo} style={{
+                            marginTop: '145px',
                             padding: '0.5rem 1rem',
                             borderRadius: '0.5rem',
                             backgroundColor: 'red',
@@ -371,7 +376,7 @@ const ResPosting = () => {
                 <div style={{
                     display: 'flex',
                     alignItems: 'center', justifyContent: 'center', maxWidth: '1000px',
-                    flex: 1, height: '80vh', borderRadius: '15px', marginTop: '20px',
+                    flex: 1, height: '85vh', borderRadius: '15px', marginTop: '20px',
                     backgroundImage: 'url("https://cdn3.iconfinder.com/data/icons/30-communication-connectivity-part-2/202/Post-512.png") ',
                     backgroundSize: 'cover'
                 }}>

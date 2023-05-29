@@ -11,7 +11,7 @@ const AdminNavBar = () => {
             <ul>
                 <CustomLink href="/Examination">Examination</CustomLink>
                 <CustomLink href="/Statistic">Statistic</CustomLink>
-                <CustomLink>Log Out</CustomLink>
+                <CustomLink href="/">Log Out</CustomLink>
             </ul>
         </nav>
     )
