@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 const SignUp = () => {
     // const [selectedOption, setSelectedOption] = useState('');
     const [selectedOption2, setSelectedOption2] = useState('');
@@ -55,8 +56,9 @@ const SignUp = () => {
                 "city": selectedOption2
             }]
         }
-
+        
         console.log(values);
+        console.log(`http://${import.meta.env.VITE_IP_ADDRESS}:3333/pending/addResturant`)
         toast.success('Thank you for joining us! Keep track, and sign in within two days', {
             position: toast.POSITION.TOP_RIGHT,
         });
@@ -71,7 +73,21 @@ const SignUp = () => {
         setResName('');
         setResLoc('');
         setResLog('');
-    };
+        fetch(`http://${import.meta.env.VITE_IP_ADDRESS}:3333/pending/addResturant`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(values),
+          })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+        })
+        .catch(error => console.log(error));
+        
+    }
+
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center', height: '96vh', borderRadius: '15px', border: 'solid 1px white', width: '1000px', position: 'absolute', top: '-195px', marginLeft: '330px', backgroundColor: 'white' }}>

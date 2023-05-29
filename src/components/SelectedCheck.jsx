@@ -1,7 +1,7 @@
 import { Button } from 'bootstrap';
 import React from 'react'
 
-const SelectedCheck = ({ firstName, lastName, resName, location, email, phoneNumber, long, lat, onClick1, onClick2 }) => {
+const SelectedCheck = ({ firstName, lastName, resName, location, email, phoneNumber, long, lat, onClick1, onClick2 , date }) => {
     return (
         <div className='msgContainer'>
             <div className='msgHeader'>
@@ -24,6 +24,7 @@ const SelectedCheck = ({ firstName, lastName, resName, location, email, phoneNum
                 <p style={{fontWeight:"bold"}}>Restaurant's Location:<span id='foot'>{location}</span></p>
                 <p style={{fontWeight:"bold"}}>Restaurant's Latitude:<span id='foot'>{lat}</span></p>
                 <p style={{fontWeight:"bold"}}>Restaurant's Longitude:<span id='foot'>{long}</span></p>
+                <p style={{fontWeight:"bold"}}>Date:<span id='foot'>{date}</span></p>
             </div>
         </div>
     );

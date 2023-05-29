@@ -1,16 +1,47 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useState, useEffect } from "react";
 import SelectedMsg from "./SelectedMsg";
 
-function Messages() {
+
+
+function Messages  () {
+
     const [messages, setMessages] = useState([]);
     const [activeIndex, setActiveIndex] = useState(null);
     const [selectedMessage, setSelectedMessage] = useState(null);
+    const [data , setData] = useState([])
+    const [resName , setResName] = useState()
+    const [click , setClick] = useState(false)
 
-    useEffect(() => {
-        fetch("/mails.json")
-            .then((response) => response.json())
-            .then((data) => setMessages(data));
-    }, []);
+    useEffect (() => {
+        AsyncStorage.getItem('resName')
+        .then(data => {
+            setResName(data)
+            setClick(!click)
+        })
+    } , [resName])
+    useEffect(()  => {
+        
+        let values =  {
+            resName : resName
+        }
+        fetch(`http://${import.meta.env.VITE_IP_ADDRESS}:3333/order/getOrders`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(values),
+          })
+        .then(response => response.json())
+        .then(result => {
+            const reversedMap = [...result].reverse().map(x => {
+                return x;
+              });
+            setMessages(reversedMap)
+            console.log(reversedMap)
+        })
+        .catch(error => console.log(error));
+    }, [click]);
 
     const handleItemClick = (index) => {
         setActiveIndex(index);
@@ -29,17 +60,17 @@ function Messages() {
                                     }`}
                                 onClick={() => handleItemClick(index)}
                             >
-                                <h5>{message.name}</h5>
-                                <p id="brief">{message.brief}</p>
-                                <small>{new Date(message.date).toLocaleDateString()}</small>
+                                <h5>{message.email}</h5>
+                                <p id="brief">{message.createAt}</p>
+                                <small>{new Date(message.createAt).toLocaleDateString()}</small>
                             </li>
                         ))}
                     </ul>
                 </div>
                 <div className="col-md-8">
                     {selectedMessage && (
-                        <SelectedMsg name={selectedMessage.name} brief={selectedMessage.brief}
-                            message={selectedMessage.message} date={selectedMessage.date}
+                        <SelectedMsg name={selectedMessage.resName} brief={selectedMessage.randomNumberCode}
+                            message={selectedMessage.paymentType} date={selectedMessage.createAt}
                         />
                     )}
                 </div>

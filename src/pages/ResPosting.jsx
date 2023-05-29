@@ -1,19 +1,140 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import NavBar from '../components/NavBar';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const ResPosting = () => {
     const [selectedOption, setSelectedOption] = useState('');
+    const [selectedOption2, setSelectedOption2] = useState('');
     const [resName, setResName] = useState('');
     const [boxNo, setBoxNo] = useState(0);
     const [des, setDes] = useState('');
     const [old, setOld] = useState(0);
     const [newp, setNew] = useState(0);
     const [from, setFrom] = useState('');
+    const [fromPeriod, setFromPeriod] = useState('');
+    const [fromD, setFromD] = useState('');
     const [to, setTo] = useState('');
+    const [toD, setToD] = useState('');
+    const [toPeriod, setToPeriod] = useState('');
+    const [email , setUserEmail] = useState('')
+    const [click , setClick] = useState(false)
+    const [prodcutId , setProductId] = useState('')
+    useEffect (() => {
+        AsyncStorage.getItem('user')
+        .then(data => {
+            setUserEmail(data)
+            setClick(!click)
+        })
+    } , [resName])
+
+    useEffect(()=> {
+        let values = {
+            email : email
+        }
+        fetch(`http://${import.meta.env.VITE_IP_ADDRESS}:3333/prodcut/getInfo`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(values),
+          })
+        .then(response => response.json())
+        .then(result => {
+            console.log(result)
+            setBoxNo(result[0].boxNo)
+            setDes(result[0].description)
+            setResName(result[0].resName)
+            setSelectedOption(result[0].category)
+            setOld(result[0].price['oldPrice'])
+            setNew(result[0].price['newPrice'])
+            let arr = result[0].timeToCollect.split('-')
+            console.log(arr[1])
+            setFrom(convertTo24Hour(arr[0]))
+            setTo(convertTo24Hour(arr[1]))
+            setFromD(arr[0])
+            setToD(arr[1])
+            setSelectedOption2(result[0].available)
+            setProductId(result[0]._id)
+        })
+        .catch(error => console.log(error));
+    } ,[click])
 
     const handleSelectChange = (event) => {
         setSelectedOption(event.target.value);
     };
+
+    const handleSelectChange2 = (event) => {
+        setSelectedOption2(event.target.value);
+    }
+    let updateInfo = () => {
+        let values = {
+            category : selectedOption ,
+            resName : resName ,
+            boxNo : boxNo ,
+            price :{
+                oldPrice : old ,
+                newPrice : newp
+            } ,
+            timeToCollect : `${fromD} ${fromPeriod}-${toD} ${toPeriod}` ,
+            description : des ,
+            available : selectedOption2
+            
+        }
+        console.log(values)
+        fetch(`http://${import.meta.env.VITE_IP_ADDRESS}:3333/prodcut/updateProduct/${prodcutId}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(values),
+          })
+        .then(response => response.json())
+        .then(data => {
+            setClick(!click)
+        })
+    }
+
+    let handleFfrom = (event) => {
+        const selectedTime = event.target.value;
+        let conv = convertTo12HourFormat(selectedTime)
+        setFrom(selectedTime)
+        setFromD(conv.split(' ')[0])
+        setFromPeriod(conv.split(' ')[1])
+    }
+
+    let handleTo = (event) => {
+        const selectedTime = event.target.value;
+        let conv = convertTo12HourFormat(selectedTime)
+        setTo(selectedTime)
+        setToD(conv.split(' ')[0])
+        setToPeriod(conv.split(' ')[1])
+    }
+
+    const convertTo12HourFormat = (time) => {
+        const [hours, minutes] = time.split(':');
+        const date = new Date();
+        date.setHours(hours);
+        date.setMinutes(minutes);
+        const options = { hour: '2-digit', minute: '2-digit', hour12: true };
+        return date.toLocaleTimeString([], options);
+    };
+
+    const convertTo24Hour = (time) =>  {
+        var hours = parseInt(time.substr(0, 2));
+        var minutes = parseInt(time.substr(3, 2));
+        var period = time.substr(6, 2).toLowerCase();
+      
+        if (period === 'pm' && hours !== 12) {
+          hours += 12;
+        } else if (period === 'am' && hours === 12) {
+          hours = 0;
+        }
+      
+        var formattedTime = hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0');
+        return formattedTime;
+      }
+
     return (
         <>
             <NavBar />
@@ -37,7 +158,7 @@ const ResPosting = () => {
                             marginTop: '30px',
                             fontSize: '1.2rem',
                             margin: '-0.5rem'
-                        }} htmlFor="dropdown">Title:</label>
+                        }} htmlFor="dropdown">Category:</label>
                         <select style={{
                             padding: '0.5rem',
                             marginBottom: '0rem',
@@ -49,9 +170,14 @@ const ResPosting = () => {
                             fontSize: '1.2rem',
                         }} id="dropdown" value={selectedOption} onChange={handleSelectChange}>
                             <option value="">--Please choose an option--</option>
-                            <option value="option1">Sweet</option>
-                            <option value="option2">Breakfast</option>
-                            <option value="option3">dinner</option>
+                            <option value="Sweet">Sweet</option>
+                            <option value="Breakfast">Breakfast</option>
+                            <option value="Dinner">Dinner</option>
+                            <option value="Lunch">Lunch</option>
+                            <option value="FastFood">FastFood</option>
+                            <option value="Burger">Burger</option>
+                            <option value="Pizza">Pizza</option>
+                            <option value="None">None</option>
                         </select>
 
                         <label style={{
@@ -182,7 +308,7 @@ const ResPosting = () => {
                                     maxWidth: '130px',
                                     color: 'black',
                                     fontSize: '1.2rem'
-                                }} type='time' value={from} onChange={e => setFrom(e.target.value)} />
+                                }} type='time' value={from} onChange={handleFfrom} />
                             </label>
                             <label style={{
                                 display: 'flex',
@@ -203,10 +329,34 @@ const ResPosting = () => {
                                     maxWidth: '130px',
                                     color: 'black',
                                     fontSize: '1.2rem'
-                                }} type='time' value={to} onChange={e => setTo(e.target.value)} />
+                                }} type='time' value={to} onChange={handleTo} />
                             </label>
+                            <label style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                textAlign: 'left',
+                                width: '100%',
+                                fontSize: '1.2rem',
+                                margin: '-0.2rem',
+                                marginLeft: '1rem'
+                            }} htmlFor="dropdown">Avaliable:</label>
+                        <select style={{
+                            padding: '0.5rem',
+                            marginBottom: '1rem',
+                            borderRadius: '0.5rem',
+                            border: '1px solid #ccc',
+                            width: '100%',
+                            maxWidth: '300px',
+                            color: 'gray',
+                            fontSize: '1.2rem',
+                        }} id="dropdown" value={selectedOption2} onChange={handleSelectChange2}>
+                            <option value="">--Please choose an option--</option>
+                            <option value="true">YES</option>
+                            <option value="false">NO</option>
+                        </select>
                         </div>
-                        <button style={{
+
+                        <button onClick = {updateInfo} style={{
                             marginTop: '170px',
                             padding: '0.5rem 1rem',
                             borderRadius: '0.5rem',
@@ -215,7 +365,7 @@ const ResPosting = () => {
                             border: 'none',
                             cursor: 'pointer',
                             transition: 'background-color 0.2s ease-in-out'
-                        }} type="submit">Post</button>
+                        }} type="submit"> Update </button>
                     </div>
                 </div>
                 <div style={{

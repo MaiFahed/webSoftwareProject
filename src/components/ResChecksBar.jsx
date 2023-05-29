@@ -7,16 +7,20 @@ function ResChecksBar() {
     const [checks, setChecks] = useState([]);
     const [activeIndex, setActiveIndex] = useState(null);
     const [selectedCheck, setSelectedCheck] = useState(null);
-
+    const [userEmail , setUserEmail] = useState("")
     useEffect(() => {
-        fetch("/checks.json")
+        fetch(`http://${import.meta.env.VITE_IP_ADDRESS}:3333/pending/getPendingResturants`)
             .then((response) => response.json())
-            .then((data) => setChecks(data));
+            .then((data) => {
+                setChecks(data)
+            });
     }, []);
 
-    const handleItemClick = (index) => {
+    const handleItemClick = (index , email) => {
         setActiveIndex(index);
         setSelectedCheck(checks[index]);
+        setUserEmail(email)
+        
     };
 
     const handleRemoveClick = () => {
@@ -29,6 +33,21 @@ function ResChecksBar() {
             setChecks(updatedChecks);
             setActiveIndex(null);
         }
+        let values = {
+            email : userEmail
+        }
+        fetch(`http://${import.meta.env.VITE_IP_ADDRESS}:3333/pending/deleteResturant`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(values),
+          })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+        })
+        .catch(error => console.log(error));
     };
 
     const handleAcceptClick = () => {
@@ -41,6 +60,21 @@ function ResChecksBar() {
             setChecks(updatedChecks);
             setActiveIndex(null);
         }
+        let values = {
+            email : userEmail
+        }
+        fetch(`http://${import.meta.env.VITE_IP_ADDRESS}:3333/pending/acceptResturant`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(values),
+          })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+        })
+        .catch(error => console.log(error));
     };
 
     return (
@@ -53,7 +87,7 @@ function ResChecksBar() {
                                 key={index}
                                 className={`list-group-item ${index === activeIndex ? "active" : ""
                                     }`}
-                                onClick={() => handleItemClick(index)}
+                                onClick={() => handleItemClick(index ,check.email)}
                             >
                                 <h5>{check.resName}</h5>
                                 <p id="brief">{check.firstName} {check.lastName}</p>
@@ -66,8 +100,9 @@ function ResChecksBar() {
                 <div className="col-md-8">
                     {activeIndex !== null && (
                         <SelectedCheck onClick1={handleRemoveClick} onClick2={handleAcceptClick} firstName={selectedCheck.firstName} lastName={selectedCheck.lastName}
-                            resName={selectedCheck.resName} location={selectedCheck.location} email={selectedCheck.email}
-                            lat={selectedCheck.lat} long={selectedCheck.long} phoneNumber={selectedCheck.phoneNumber}
+                            resName={selectedCheck.resName} location={selectedCheck.location[1].city} email={selectedCheck.email}
+                            lat={selectedCheck.location[0].latitude} long={selectedCheck.location[0].longitude} phoneNumber={selectedCheck.phoneNumber}
+                            date = {selectedCheck.dateOfAnnouncment}
                         />
                     )}
                     <ToastContainer />
