@@ -15,7 +15,7 @@ const Notifications = () => {
             "icon": "notification"
         }
 
-        fetch(`https://exp.host/--/api/v2/push/send`, {
+        fetch(`http://${import.meta.env.VITE_IP_ADDRESS}:3333/notification`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
