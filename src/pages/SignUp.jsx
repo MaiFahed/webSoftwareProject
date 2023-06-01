@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 const SignUp = () => {
-    // const [selectedOption, setSelectedOption] = useState('');
     const [selectedOption2, setSelectedOption2] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -15,28 +13,48 @@ const SignUp = () => {
     const [resLoc, setResLoc] = useState('');
     const [resLog, setResLog] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
+    const [uploading, setUploading] = useState(false);
 
-    // const handleFileInputChange = (event) => {
+    // const handleFileChange = (event) => {
     //     setSelectedFile(event.target.files[0]);
     // };
-    // const handleShowNotification = () => {
-    //     toast.success('Thank you for joining us! Keep track, and sign in within two days', {
-    //         position: toast.POSITION.TOP_RIGHT,
+
+    // const handleUpload = () => {
+    //     if (!selectedFile) {
+    //         alert('Please select a file.');
+    //         return;
+    //     }
+
+    //     setUploading(true);
+
+    //     AWS.config.update({
+    //         accessKeyId: "AKIA33HVQD3TR76ID63Q",
+    //         secretAccessKey: "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",
+    //     });
+
+    //     const s3 = new AWS.S3();
+    //     const fileName = selectedFile.name;
+    //     const s3Params = {
+    //         Bucket: 'go4food-pic',
+    //         Key: fileName,
+    //         Body: selectedFile,
+    //         ACL: 'public-read' // Set ACL to public-read if you want the uploaded image to be publicly accessible
+    //     };
+
+    //     s3.upload(s3Params, function (err, data) {
+    //         if (err) {
+    //             console.log('Error uploading image:', err);
+    //         } else {
+    //             console.log('Image uploaded successfully:', data.Location);
+    //             setSelectedFile(null);
+    //             setUploading(false);
+    //         }
     //     });
     // };
 
     const handleSelectChange2 = (event) => {
         setSelectedOption2(event.target.value);
     };
-
-    // const handleUploadClick = () => {
-    //     // Perform the upload using the selected file
-    //     console.log(selectedFile);
-    // };
-
-    // const handleSelectChange = (event) => {
-    //     setSelectedOption(event.target.value);
-    // };
 
     const handleSignUp = () => {
         let values = {
@@ -56,7 +74,7 @@ const SignUp = () => {
                 "city": selectedOption2
             }]
         }
-        
+
         console.log(values);
         console.log(`http://${import.meta.env.VITE_IP_ADDRESS}:3333/pending/addResturant`)
         toast.success('Thank you for joining us! Keep track, and sign in within two days', {
@@ -76,23 +94,23 @@ const SignUp = () => {
         fetch(`http://${import.meta.env.VITE_IP_ADDRESS}:3333/pending/addResturant`, {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json',
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify(values),
-          })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
         })
-        .catch(error => console.log(error));
-        
-    }
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+            })
+            .catch(error => console.log(error));
 
+    }
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center', height: '96vh', borderRadius: '15px', border: 'solid 1px white', width: '1000px', position: 'absolute', top: '-195px', marginLeft: '330px', backgroundColor: 'white' }}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', flex: 1, height: '500px' }}>
                 {/* <div style={{ marginTop: '20px', fontWeight: 'bold', fontSize: '25px', color: 'black' }}>SignUp</div> */}
+
                 <div style={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -301,6 +319,7 @@ const SignUp = () => {
                             fontSize: '1.2rem'
                         }} type='text' value={resLog} onChange={(event) => setResLog(event.target.value)} />
                     </label>
+
                     {/* <div style={{ display: 'flex', textAlign: 'center', flexDirection: 'row', justifyContent: 'center', alignContent: 'center', position: 'absolute', top: '570px', maxWidth: '250px', marginLeft: '-60px' }}>
                         <label style={{
                             display: 'flex',
@@ -329,6 +348,11 @@ const SignUp = () => {
                         }} onClick={handleUploadClick}>Upload</button>
                     </div> */}
                     {/* </div>  */}
+                    {/* <input type="text" value={photoPath} onChange={handlePathChange} /> */}
+                    {/* <input type="file" onChange={handleFileChange} />
+                    <button onClick={handleUpload} disabled={uploading}>{uploading ? 'Uploading...' : 'Upload'}</button> */}
+
+
                     <button style={{
                         marginTop: '-5px',
                         padding: '0.5rem 1rem',
@@ -341,7 +365,7 @@ const SignUp = () => {
                     }} onClick={handleSignUp} type="submit">SignUp</button>
                     <ToastContainer />
                 </div>
-                <p>Already have an account? Sign in here.</p> 
+                <p>Already have an account? Sign in here.</p>
             </div>
             <div style={{
                 display: 'flex',

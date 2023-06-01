@@ -13,6 +13,7 @@ import Statistic from "./pages/Statistic";
 import AdminNavBar from "./components/AdminNavBar";
 import Examination from "./pages/Examination";
 import Donate from "./pages/Donate";
+import Notifications from "./pages/Notifications";
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
             <Route path="/AdminNavBar" component={AdminNavBar} />
             <Route path="/Examination" component={Examination} />
             <Route path="/Statistic" component={Statistic} />
+            <Route path="/Notifications" component={Notifications} />
           </Switch>
         </Router>
       </div>

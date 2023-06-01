@@ -23,7 +23,31 @@ const Statistic = () => {
   return (
     <>
       <AdminNavBar />
-      <div style={{ display: 'flex', flexDirection: 'row', position:"absolute", marginTop:'-100px', marginLeft:'200px' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', position: "absolute", marginTop: '-70px', marginLeft: '140px', backgroundColor: 'lightgray', height: '85px', width: '120px' }}>
+        <p style={{ fontWeight: 'bold', color: 'blue' }}>10,000 </p>
+        <p style={{ fontWeight: 'bold', color: 'red' }}>Users </p>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', position: "absolute", marginTop: '30px', marginLeft: '140px', backgroundColor: 'lightgray', height: '85px', width: '120px' }}>
+        <p style={{ fontWeight: 'bold', color: 'orange' }}>10,000 </p>
+        <p style={{ fontWeight: 'bold', color: 'red' }}>Users </p>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', position: "absolute", marginTop: '130px', marginLeft: '140px', backgroundColor: 'lightgray', height: '85px', width: '120px' }}>
+        <p style={{ fontWeight: 'bold', color: 'red' }}>10,000 </p>
+        <p style={{ fontWeight: 'bold', color: 'red' }}>Users </p>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', position: "absolute", marginTop: '230px', marginLeft: '140px', backgroundColor: 'lightgray', height: '85px', width: '120px' }}>
+        <p style={{ fontWeight: 'bold', color: 'purple' }}>10,000 </p>
+        <p style={{ fontWeight: 'bold', color: 'red' }}>Users </p>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', position: "absolute", marginTop: '330px', marginLeft: '140px', backgroundColor: 'lightgray', height: '85px', width: '120px' }}>
+        <p style={{ fontWeight: 'bold', color: 'blue' }}>10,000 </p>
+        <p style={{ fontWeight: 'bold', color: 'red' }}>Users </p>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', position: "absolute", marginTop: '430px', marginLeft: '140px', backgroundColor: 'lightgray', height: '85px', width: '120px' }}>
+        <p style={{ fontWeight: 'bold', color: 'orange' }}>10,000 </p>
+        <p style={{ fontWeight: 'bold', color: 'red' }}>Users </p>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'row', position: "absolute", marginTop: '-100px', marginLeft: '300px' }}>
         <PieChart width={400} height={300}>
           <Pie
             data={data}
@@ -61,7 +85,7 @@ const Statistic = () => {
           <Area type="monotone" dataKey="value" stroke="#8884d8" fill="#8884d8" />
         </AreaChart>
       </div>
-      <div style={{ display: 'flex', flexDirection: 'row', position:"absolute", marginTop:'250px', marginLeft:'400px' }}>
+      <div style={{ display: 'flex', flexDirection: 'row', position: "absolute", marginTop: '250px', marginLeft: '500px' }}>
         <RadialBarChart width={400} height={300} cx={150} cy={150} innerRadius={20} outerRadius={140} barSize={10} data={data}>
           <RadialBar minAngle={15} background clockWise={true} dataKey="value" />
           <Legend iconSize={10} width={120} height={140} layout="vertical" verticalAlign="middle" align="right" />

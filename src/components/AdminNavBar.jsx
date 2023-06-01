@@ -9,8 +9,9 @@ const AdminNavBar = () => {
                 Admin of Go4Food
             </a>
             <ul>
-                <CustomLink href="/Examination">Examination</CustomLink>
                 <CustomLink href="/Statistic">Statistic</CustomLink>
+                <CustomLink href="/Examination">Examination</CustomLink>
+                <CustomLink href="/Notifications">Notifications</CustomLink>
                 <CustomLink href="/">Log Out</CustomLink>
             </ul>
         </nav>

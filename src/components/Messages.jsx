@@ -44,10 +44,20 @@ function Messages() {
             })
             .catch(error => console.log(error));
     }, [click]);
-
+    const fetchData = async (name) => {
+        try {
+            const response = await fetch(`http://${import.meta.env.VITE_IP_ADDRESS}:3333/user/getUser/${name}`); // Replace with your API endpoint
+            const jsonData = await response.json();
+            console.log(jsonData)
+            return jsonData;
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
     const handleItemClick = (index) => {
         setActiveIndex(index);
         setSelectedMessage(messages[index]);
+        const value = fetchData(messages[index]);
     };
 
     return (

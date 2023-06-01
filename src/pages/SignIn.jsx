@@ -7,39 +7,39 @@ import { Link } from "react-router-dom";
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [logIn , setLogIn] = useState(false)
+  const [logIn, setLogIn] = useState(false)
   const handleSignIn = () => {
     let values = {
-      email : email ,
-      password : password
+      email: email,
+      password: password
     }
     console.log(values)
     fetch(`http://${import.meta.env.VITE_IP_ADDRESS}:3333/prodcut/check`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(values),
-          })
-        .then(response => response.json())
-        .then(async data => {
-            if(data.message == "userfound"){
-              await AsyncStorage.setItem("user" , data.email)
-              await AsyncStorage.setItem("resName" , data.resName)
-              console.log(await AsyncStorage.getItem("resName"))
-              setLogIn(true)
-              window.location.replace('/ResPosting');
-            }
-            else if (data.message == "admin") {
-              await AsyncStorage.setItem("user" , data.email)
-              setLogIn(true)
-              window.location.replace('/Statistic');
-            }
-            else {
-              Alert.alert("No user found")
-            }
-        })
-        .catch(error => console.log(error));
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(values),
+    })
+      .then(response => response.json())
+      .then(async data => {
+        if (data.message == "userfound") {
+          await AsyncStorage.setItem("user", data.email)
+          await AsyncStorage.setItem("resName", data.resName)
+          console.log(await AsyncStorage.getItem("resName"))
+          setLogIn(true)
+          window.location.replace('/ResPosting');
+        }
+        else if (data.message == "admin") {
+          await AsyncStorage.setItem("user", data.email)
+          setLogIn(true)
+          window.location.replace('/Statistic');
+        }
+        else {
+          Alert.alert("No user found")
+        }
+      })
+      .catch(error => console.log(error));
   };
 
   const buttonStyles = {
@@ -102,10 +102,10 @@ const SignIn = () => {
             }} placeholder="Enter your password" type="password" value={password} onChange={e => setPassword(e.target.value)} />
           </label>
           {/* <a href="/ResPosting"> */}
-            <button
-              onClick={handleSignIn}
-              style={buttonStyles} type="submit">Sign In</button>
-        {/* </a>  */}
+          <button
+            onClick={handleSignIn}
+            style={buttonStyles} type="submit">Sign In</button>
+          {/* </a>  */}
           <a href="/SignUp" style={{ fontSize: '15px' }}>You don't have an account? Sign Up here.</a>
         </div>
       </div>
