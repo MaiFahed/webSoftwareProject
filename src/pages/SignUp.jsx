@@ -13,45 +13,20 @@ const SignUp = () => {
     const [resLoc, setResLoc] = useState('');
     const [resLog, setResLog] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
-    const [uploading, setUploading] = useState(false);
+    // const [uploading, setUploading] = useState(false);
 
-    // const handleFileChange = (event) => {
-    //     setSelectedFile(event.target.files[0]);
-    // };
+    const handleFileInputChange = (event) => {
+        setSelectedFile(event.target.files[0]);
+    };
 
-    // const handleUpload = () => {
-    //     if (!selectedFile) {
-    //         alert('Please select a file.');
-    //         return;
-    //     }
-
-    //     setUploading(true);
-
-    //     AWS.config.update({
-    //         accessKeyId: "AKIA33HVQD3TR76ID63Q",
-    //         secretAccessKey: "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",
-    //     });
-
-    //     const s3 = new AWS.S3();
-    //     const fileName = selectedFile.name;
-    //     const s3Params = {
-    //         Bucket: 'go4food-pic',
-    //         Key: fileName,
-    //         Body: selectedFile,
-    //         ACL: 'public-read' // Set ACL to public-read if you want the uploaded image to be publicly accessible
-    //     };
-
-    //     s3.upload(s3Params, function (err, data) {
-    //         if (err) {
-    //             console.log('Error uploading image:', err);
-    //         } else {
-    //             console.log('Image uploaded successfully:', data.Location);
-    //             setSelectedFile(null);
-    //             setUploading(false);
-    //         }
-    //     });
-    // };
-
+    const handleUploadClick = () => {
+        if (selectedFile) {
+            // Perform the upload logic here, e.g., send the file to the server
+            console.log('Uploading file:', selectedFile);
+        } else {
+            console.log('No file selected.');
+        }
+    };
     const handleSelectChange2 = (event) => {
         setSelectedOption2(event.target.value);
     };
@@ -107,7 +82,7 @@ const SignUp = () => {
     }
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', height: '96vh', borderRadius: '15px', border: 'solid 1px white', width: '1000px', position: 'absolute', top: '-195px', marginLeft: '330px', backgroundColor: 'white' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', height: '97vh', borderRadius: '15px', border: 'solid 1px white', width: '1000px', position: 'absolute', top: '-195px', marginLeft: '330px', backgroundColor: 'white' }}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', flex: 1, height: '500px' }}>
                 {/* <div style={{ marginTop: '20px', fontWeight: 'bold', fontSize: '25px', color: 'black' }}>SignUp</div> */}
 
@@ -279,48 +254,50 @@ const SignUp = () => {
                         <option value="Ramallah">Ramallah</option>
                         <option value="Jenin">Jenin</option>
                     </select>
-                    <label style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        textAlign: 'left',
-                        width: '100%',
-                        fontSize: '1.2rem',
-                        // margin: '0.1rem',
-                    }}>
-                        Restaurant's Latitude:
-                        <input style={{
-                            padding: '0.5rem',
-                            // marginBottom: '1rem',
-                            borderRadius: '0.5rem',
-                            border: '1px solid #ccc',
+                    <div style={{ position: 'absolute', marginTop: '550px', marginRight:'150px' }}>
+                        <label style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            textAlign: 'left',
                             width: '100%',
-                            maxWidth: '300px',
-                            color: 'black',
-                            fontSize: '1.2rem'
-                        }} type='text' value={resLoc} onChange={(event) => setResLoc(event.target.value)} />
-                    </label>
-                    <label style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        textAlign: 'left',
-                        width: '100%',
-                        fontSize: '1.2rem',
-                        // margin: '0.1rem',
-                    }}>
-                        Restaurant's Longitude:
-                        <input style={{
-                            padding: '0.5rem',
-                            // marginBottom: '1rem',
-                            borderRadius: '0.5rem',
-                            border: '1px solid #ccc',
+                            fontSize: '1.2rem',
+                        }}>
+                            Restaurant's Latitude:
+                            <input style={{
+                                padding: '0.5rem',
+                                // marginBottom: '1rem',
+                                borderRadius: '0.5rem',
+                                border: '1px solid #ccc',
+                                width: '80%',
+                                maxWidth: '300px',
+                                color: 'black',
+                                fontSize: '1.2rem'
+                            }} type='text' value={resLoc} onChange={(event) => setResLoc(event.target.value)} />
+                        </label>
+                    </div>
+                    <div style={{ position: 'absolute', marginTop: '550px',marginLeft:'250px' }}>
+                        <label style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            textAlign: 'left',
                             width: '100%',
-                            maxWidth: '300px',
-                            color: 'black',
-                            fontSize: '1.2rem'
-                        }} type='text' value={resLog} onChange={(event) => setResLog(event.target.value)} />
-                    </label>
-
-                    {/* <div style={{ display: 'flex', textAlign: 'center', flexDirection: 'row', justifyContent: 'center', alignContent: 'center', position: 'absolute', top: '570px', maxWidth: '250px', marginLeft: '-60px' }}>
+                            fontSize: '1.2rem',
+                            // margin: '0.1rem',
+                        }}>
+                            Restaurant's Longitude:
+                            <input style={{
+                                padding: '0.5rem',
+                                // marginBottom: '1rem',
+                                borderRadius: '0.5rem',
+                                border: '1px solid #ccc',
+                                width: '89%',
+                                maxWidth: '300px',
+                                color: 'black',
+                                fontSize: '1.2rem'
+                            }} type='text' value={resLog} onChange={(event) => setResLog(event.target.value)} />
+                        </label>
+                    </div>
+                    <div style={{ display: 'flex', textAlign: 'center', flexDirection: 'row', justifyContent: 'center', alignContent: 'center', position: 'absolute', top: '670px', maxWidth: '250px', marginRight: '100px' }}>
                         <label style={{
                             display: 'flex',
                             flexDirection: 'column',
@@ -330,10 +307,10 @@ const SignUp = () => {
                             margin: '0.2rem',
                             marginLeft: '9rem'
                         }}>
-                            Restaurant's Certificate:
+                            Restaurant's Background:
                             <input type="file" onChange={handleFileInputChange} />
                         </label>
-                        {selectedFile && <p style={{ fontSize: '17px', color: 'red', position: 'absolute', top: '47px', marginLeft:'340px' }}>{selectedFile.name}</p>}
+                        {selectedFile && <p style={{ fontSize: '17px', color: 'red', position: 'absolute', top: '47px', marginLeft: '340px' }}>{selectedFile.name}</p>}
                         <button style={{
                             margin: '10px',
                             paddingLeft: '10px',
@@ -346,22 +323,17 @@ const SignUp = () => {
                             cursor: 'pointer',
                             transition: 'background-color 0.2s ease-in-out'
                         }} onClick={handleUploadClick}>Upload</button>
-                    </div> */}
-                    {/* </div>  */}
-                    {/* <input type="text" value={photoPath} onChange={handlePathChange} /> */}
-                    {/* <input type="file" onChange={handleFileChange} />
-                    <button onClick={handleUpload} disabled={uploading}>{uploading ? 'Uploading...' : 'Upload'}</button> */}
-
+                    </div>
 
                     <button style={{
-                        marginTop: '-5px',
+                        marginTop: '190px',
                         padding: '0.5rem 1rem',
                         borderRadius: '0.5rem',
                         backgroundColor: '#0070f3',
                         color: '#fff',
                         border: 'none',
                         cursor: 'pointer',
-                        transition: 'background-color 0.2s ease-in-out'
+                        transition: 'background-color 0.2s ease-in-out',
                     }} onClick={handleSignUp} type="submit">SignUp</button>
                     <ToastContainer />
                 </div>
@@ -370,7 +342,7 @@ const SignUp = () => {
             <div style={{
                 display: 'flex',
                 alignItems: 'center', justifyContent: 'center', maxWidth: '1000px',
-                flex: 1, height: '96vh', borderRadius: '15px', border: 'solid 1px white',
+                flex: 1, height: '97vh', borderRadius: '15px', border: 'solid 1px white',
                 backgroundImage: 'url("https://tse1.mm.bing.net/th?id=OIP.cAgPjRELM1X7HjZJGGZjKgHaDt&pid=Api&P=0") ', filter: 'blur(3px)',
                 backgroundSize: 'cover'
             }}>

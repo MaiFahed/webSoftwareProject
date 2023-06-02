@@ -12,7 +12,7 @@ const DonateBar = () => {
   const [resName, setResName] = useState('');
   const [itemId, setItemId] = useState()
   const [payment, setPayment] = useState()
-  const [click , setClick] = useState(false)
+  const [click, setClick] = useState(false)
   let getUserInfo = async () => {
     setResName(await AsyncStorage.getItem("resName"))
   }
@@ -34,9 +34,9 @@ const DonateBar = () => {
         setChecks(data)
       })
       .catch(error => console.log(error));
-  }, [resName,click]);
+  }, [resName, click]);
 
-  useEffect(()=> {
+  useEffect(() => {
     setClick(!click)
   }, [])
 
@@ -67,15 +67,9 @@ const DonateBar = () => {
         console.log(data)
       })
       .catch(error => console.log(error));
-    // toast.success('Payment completed successfully', {
-    //   position: toast.POSITION.TOP_RIGHT,
-    // });
-    // if (activeIndex !== null) {
-    //   const updatedChecks = [...checks];
-    //   updatedChecks.splice(activeIndex, 1);
-    //   setChecks(updatedChecks);
-    //   setActiveIndex(null);
-    // }
+    toast.success('Payment completed successfully', {
+      position: toast.POSITION.TOP_RIGHT,
+    });
   };
 
   const handleAcceptClick = () => {
