@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import NavBar from '../components/NavBar';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ResPosting = () => {
     const [selectedOption, setSelectedOption] = useState('');
@@ -93,6 +95,9 @@ const ResPosting = () => {
             .then(data => {
                 setClick(!click)
             })
+        toast.success('Updated Successfully', {
+            position: toast.POSITION.TOP_RIGHT,
+        });
     }
 
     let handleFfrom = (event) => {
@@ -150,7 +155,7 @@ const ResPosting = () => {
                         maxWidth: '400px',
                         color: 'black'
                     }}>
-                        
+
                         <label style={{
                             display: 'flex',
                             flexDirection: 'column',
@@ -200,7 +205,7 @@ const ResPosting = () => {
                                 fontSize: '1.2rem'
                             }} type='text' value={resName} onChange={e => setResName(e.target.value)} />
                         </label>
-                        
+
                         <label style={{
                             display: 'flex',
                             flexDirection: 'column',
@@ -222,28 +227,28 @@ const ResPosting = () => {
                             }} type='number' value={boxNo} onChange={(event) => setBoxNo(event.target.value)} />
                         </label>
                         <label style={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                                textAlign: 'left',
-                                width: '100%',
-                                fontSize: '1.2rem',
-                                margin: '-0.2rem',
-                                marginLeft: '0rem'
-                            }} htmlFor="dropdown">Avaliable:</label>
-                            <select style={{
-                                padding: '0.5rem',
-                                marginBottom: '-1rem',
-                                borderRadius: '0.5rem',
-                                border: '1px solid #ccc',
-                                width: '100%',
-                                maxWidth: '300px',
-                                color: 'gray',
-                                fontSize: '1.2rem',
-                            }} id="dropdown" value={selectedOption2} onChange={handleSelectChange2}>
-                                <option value="">--Please choose an option--</option>
-                                <option value="true">YES</option>
-                                <option value="false">NO</option>
-                            </select>
+                            display: 'flex',
+                            flexDirection: 'column',
+                            textAlign: 'left',
+                            width: '100%',
+                            fontSize: '1.2rem',
+                            margin: '-0.2rem',
+                            marginLeft: '0rem'
+                        }} htmlFor="dropdown">Avaliable:</label>
+                        <select style={{
+                            padding: '0.5rem',
+                            marginBottom: '-1rem',
+                            borderRadius: '0.5rem',
+                            border: '1px solid #ccc',
+                            width: '100%',
+                            maxWidth: '300px',
+                            color: 'gray',
+                            fontSize: '1.2rem',
+                        }} id="dropdown" value={selectedOption2} onChange={handleSelectChange2}>
+                            <option value="">--Please choose an option--</option>
+                            <option value="true">YES</option>
+                            <option value="false">NO</option>
+                        </select>
                         <label style={{
                             display: 'flex',
                             flexDirection: 'column',
@@ -359,7 +364,7 @@ const ResPosting = () => {
 
                         </div>
                         <div style={{ display: 'flex', flexDirection: 'row', position: 'absolute', top: '700px' }}>
-                           
+
                         </div>
                         <button onClick={updateInfo} style={{
                             marginTop: '145px',
@@ -381,6 +386,7 @@ const ResPosting = () => {
                     backgroundSize: 'cover'
                 }}>
                 </div>
+                <ToastContainer />
             </div>
         </>
     );

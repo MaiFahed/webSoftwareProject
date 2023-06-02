@@ -33,8 +33,8 @@ const SelectedMsg = ({ name, brief, message, date, timeToCollect, userRate, tota
             </div>
 
             <div className='msgFooter'>
-            <p style={{fontWeight:"bold"}}>Name Code:<span id='foot'>{loading ? data[0].firstname : 0}</span></p>
-            <p style={{fontWeight:"bold"}}>Phone Code:<span id='foot'>{code}</span></p>
+            {/* <p style={{fontWeight:"bold"}}>Name Code:<span id='foot'>{loading ? data[0].firstname : 0}</span></p> */}
+            {/* <p style={{fontWeight:"bold"}}>Phone Code:<span id='foot'>{code}</span></p> */}
             <p style={{fontWeight:"bold"}}>Generation Code:<span id='foot'>{code}</span></p>
             <p style={{fontWeight:"bold"}}>Total Price:<span id='foot'>{totalPrice}</span></p>
             <p style={{fontWeight:"bold"}}>User Rate:<span id='foot'>{userRate}</span></p>

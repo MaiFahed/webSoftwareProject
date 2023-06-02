@@ -66,6 +66,7 @@ const SignUp = () => {
         setResName('');
         setResLoc('');
         setResLog('');
+        setSelectedFile(null);
         fetch(`http://${import.meta.env.VITE_IP_ADDRESS}:3333/pending/addResturant`, {
             method: 'POST',
             headers: {
